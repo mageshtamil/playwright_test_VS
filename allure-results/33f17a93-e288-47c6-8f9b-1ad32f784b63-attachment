@@ -1,0 +1,82 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: my first test case
+- Location: C:\Playwright\tests\UIBasics.spec.js:29:1
+
+# Error details
+
+```
+Error: locator.textContent: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('[style*=block]')
+
+    at C:\Playwright\tests\UIBasics.spec.js:42:54
+```
+
+# Test source
+
+```ts
+   1 | const{test,expect} = require('@playwright/test')
+   2 |
+   3 |
+   4 | import { waitForDebugger } from 'inspector';
+   5 | //import { test, expect } from '@playwright/test';
+   6 | import { only } from 'node:test';
+   7 |
+   8 | // await key word used to wait for each code to execute as Java script is asynchronous execute all code at the time(not in sequence)
+   9 | // asunc keyword used when await used inside the block
+  10 | //() represenet the annonymous function
+  11 |
+  12 |
+  13 | //{browser} is the fixture
+  14 | test.expect("my first test case", async({browser})=>
+  15 |     {
+  16 |                 const context = await browser.newContext();
+  17 |                 const page = await context.newPage();
+  18 |     await page.goto("http://google.com");
+  19 |
+  20 |
+  21 |     console.log(await(page.title()));
+  22 |     await expect(page).toHaveTitle("Google")
+  23 |        
+  24 |     }); 
+  25 |
+  26 |
+  27 |     
+  28 | // if its blank context for newContext(), newPage() we dont require to write the code
+  29 | test("my first test case", async({page})=>
+  30 |     {
+  31 |         await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+  32 |
+  33 |     const userName= page.locator("#username");
+  34 |     const signIn =page.locator("#signInBtn");
+  35 |     const cartitem =page.locator(".card-body a");
+  36 |     
+  37 |     console.log(await(page.title()));
+  38 |     await userName.fill("Hai");  //css => .id
+  39 |     await page.locator("[type=password]").fill("learning"); // css => attribute =value
+  40 |     await page.locator("[name=terms]").click();
+  41 |     await signIn.click();
+> 42 |     console.log(await page.locator("[style*=block]").textContent()); // Css regular expression => attribute* =value
+     |                                                      ^ Error: locator.textContent: Target page, context or browser has been closed
+  43 |
+  44 |     await expect(await page.locator("[style*=block]")).toContainText("Incorrect username/password.")
+  45 |
+  46 |     await userName.fill("rahulshettyacademy");
+  47 |     await signIn.click();
+  48 |   
+  49 |   console.log(await cartitem.first().textContent()); // Css parent to child => parent child
+  50 |   console.log(await cartitem.nth(1).textContent());
+  51 |   console.log(await cartitem.allTextContents());
+  52 |   await page.pause();
+  53 | });
+  54 |
+  55 |
+  56 |
+```

@@ -1,0 +1,25 @@
+[
+{
+ "productname" :  "ADIDAS ORIGINAL",
+   "username" : "smkpmagesh@gmail.com",
+   "password" : "Tamil123#",
+   "countryname":"India",
+   "countryCode" : "ind"
+},
+
+{
+  "productname" :  "ZARA COAT 3",
+    "username" : "smkpmagesh@gmail.com",
+    "password" : "Tamil123#",
+    "countryname":"Australia",
+    "countryCode" : "aus"
+ },
+ 
+{
+  "productname" :  "IPHONE 13 PRO",
+    "username" : "smkpmagesh@gmail.com",
+    "password" : "Tamil123#",
+    "countryname":"Canada",
+    "countryCode" : "can"
+ }
+]

@@ -1,0 +1,43 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: @Web speciallocator test case
+- Location: C:\Playwright\tests\specialLocator.spec.js:3:5
+
+# Error details
+
+```
+Error: page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://rahulshettyacademy.com/angularpractice/", waiting until "load"
+
+    at C:\Playwright\tests\specialLocator.spec.js:5:12
+```
+
+# Test source
+
+```ts
+   1 | import{test} from'@playwright/test'
+   2 |
+   3 | test('@Web speciallocator test case', async({page}) =>{
+   4 |
+>  5 | await page.goto("https://rahulshettyacademy.com/angularpractice/")
+     |            ^ Error: page.goto: Target page, context or browser has been closed
+   6 | await page.getByPlaceholder("Password").fill("password")
+   7 | await page.getByLabel("Check me out if you Love IceCreams!").click()
+   8 | await page.getByText("Gender").selectOption("Male")
+   9 | await page.getByLabel("Student").check()
+  10 | await page.getByRole("button",{name:'Submit'}).click()
+  11 | console.log(await page.getByText("Success! The Form has been submitted successfully!.").isVisible())
+  12 | await page.getByRole("link", {name :'Shop'}).click()
+  13 | await page.locator("app-card").filter({hasText:'Blackberry'}).getByRole("button").click();
+  14 |
+  15 |
+  16 |
+  17 | })
+```

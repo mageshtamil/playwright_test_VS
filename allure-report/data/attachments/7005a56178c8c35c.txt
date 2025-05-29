@@ -1,0 +1,81 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: test
+- Location: C:\Playwright\tests\recordscripy.spec.js:3:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://pan.utiitsl.com/
+Call log:
+  - navigating to "https://pan.utiitsl.com/", waiting until "load"
+
+    at C:\Playwright\tests\recordscripy.spec.js:4:14
+```
+
+# Page snapshot
+
+```yaml
+- heading "This site can’t be reached" [level=1]
+- paragraph:
+  - strong: pan.utiitsl.com
+  - text: took too long to respond.
+- paragraph: "Try:"
+- list:
+  - listitem: Checking the connection
+  - listitem:
+    - link "Checking the proxy and the firewall"
+  - listitem:
+    - link "Running Windows Network Diagnostics"
+- text: ERR_CONNECTION_TIMED_OUT
+- button "Reload"
+- button "Details"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | test('test', async ({ page }) => {
+>  4 |   await page.goto('https://pan.utiitsl.com/');
+     |              ^ Error: page.goto: net::ERR_CONNECTION_TIMED_OUT at https://pan.utiitsl.com/
+   5 |   await page.getByRole('button', { name: 'OK' }).click();
+   6 |   await page.getByRole('heading', { name: 'PAN Card for Indian Citizen/' }).click();
+   7 |   const page1Promise = page.waitForEvent('popup');
+   8 |   await page.getByRole('link', { name: ' Click to Apply' }).first().click();
+   9 |   const page1 = await page1Promise;
+  10 |   const page2Promise = page1.waitForEvent('popup');
+  11 |   await page1.getByRole('link', { name: 'Apply for New PAN Card (Form' }).click();
+  12 |   const page2 = await page2Promise;
+  13 |   await page2.locator('#status').selectOption('P');
+  14 |   await page2.locator('#pancardMode').first().check();
+  15 |   await page2.getByRole('menuitem', { name: 'Submit' }).click();
+  16 |   await page2.locator('.ui-widget-overlay').click();
+  17 |   await page2.getByRole('button', { name: 'Ok' }).click();
+  18 |   await page2.locator('#nameTitle').selectOption('1');
+  19 |   await page2.getByRole('textbox', { name: 'First Name' }).click();
+  20 |   await page2.getByRole('textbox', { name: 'First Name' }).fill('Mageshkumar');
+  21 |   await page2.getByRole('textbox', { name: 'First Name' }).press('Tab');
+  22 |   await page2.getByRole('textbox', { name: 'Last Name/Surname' }).click();
+  23 |   await page2.getByRole('textbox', { name: 'Last Name/Surname' }).fill('Subbiayan');
+  24 |   await page2.getByRole('textbox', { name: 'Last Name/Surname' }).press('Tab');
+  25 |   await page2.locator('#othNameFlag').selectOption('N');
+  26 |   await page2.getByRole('textbox', { name: 'DD/MM/YYYY' }).click();
+  27 |   await page2.getByRole('link', { name: '15' }).click();
+  28 |   await page2.getByRole('textbox', { name: 'DD/MM/YYYY' }).click();
+  29 |   await page2.getByLabel('Select year').selectOption('1987');
+  30 |   await page2.getByRole('textbox', { name: 'DD/MM/YYYY' }).selectOption('1987');
+  31 |   await page2.getByRole('link', { name: '15' }).click();
+  32 |   await page2.locator('#addrFlag').selectOption('B');
+  33 |   await page2.locator('#resState').selectOption('29');
+  34 |   await page2.locator('#offState').selectOption('29');
+  35 |   await page2.pause()
+  36 | });
+```

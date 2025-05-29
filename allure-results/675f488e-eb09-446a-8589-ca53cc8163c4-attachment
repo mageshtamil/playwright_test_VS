@@ -1,0 +1,278 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Visual Comparison Fail
+- Location: C:\Playwright\tests\Popupsand visual comparison.spec.js:37:1
+
+# Error details
+
+```
+Error: expect(Buffer).toMatchSnapshot(expected)
+
+  281181 pixels (ratio 0.31 of all image pixels) are different.
+
+Expected: C:\Playwright\tests\Popupsand visual comparison.spec.js-snapshots\Firstscreenhsot-win32.png
+Received: C:\Playwright\test-results\Popupsand visual comparison-Visual-Comparison-Fail\Firstscreenhsot-actual.png
+    Diff: C:\Playwright\test-results\Popupsand visual comparison-Visual-Comparison-Fail\Firstscreenhsot-diff.png
+
+    at C:\Playwright\tests\Popupsand visual comparison.spec.js:41:38
+```
+
+# Page snapshot
+
+```yaml
+- banner:
+  - link "FlightAware logo":
+    - img "FlightAware logo"
+  - navigation:
+    - list:
+      - listitem:
+        - group: Products
+      - listitem:
+        - group: Industries
+      - listitem:
+        - group: ADS-B
+      - listitem:
+        - group: Flight Tracking
+  - navigation:
+    - list:
+      - listitem:
+        - group
+  - link "Sign In"
+  - link "Join for free"
+- main:
+  - link "hero background Photo by kent55":
+    - img "hero background"
+    - img
+    - text: Photo by kent55
+  - heading "FlightAware is Central to Aviation" [level=1]
+  - img
+  - textbox
+  - text: Search for airport
+  - region "Map"
+  - link "© OpenStreetMap"
+  - heading "Connect our global flight map to your digital platforms." [level=2]
+  - link "Optimize your experience":
+    - text: Optimize your experience
+    - img
+  - heading "Innovative products powered by best-in-class data." [level=2]
+  - heading "Elevate your business with AI-assisted technology from FlightAware Foresight." [level=3]
+  - link "Learn more about FlightAware Foresight":
+    - text: Learn more about FlightAware Foresight
+    - img
+  - img "Elevate your business with AI-assisted technology from FlightAware Foresight."
+  - heading "Delivering data to developers on demand." [level=2]
+  - heading "AeroAPI is a robust, query-based API giving developers access to a huge amount of FlightAware’s current and historical data." [level=3]
+  - link "Integrate AeroAPI into your platform":
+    - text: Integrate AeroAPI into your platform
+    - img
+  - heading "Unlock real-time global flight tracking and ADS-B flight data." [level=2]
+  - heading "Tap into the data feed inside FlightAware Firehose to access the status and information for all flights on the ground and in the air." [level=3]
+  - link "Discover more about FlightAware Firehose":
+    - text: Discover more about FlightAware Firehose
+    - img
+  - link "See all products":
+    - text: See all products
+    - img
+  - heading "Secure, private fleet tracking." [level=2]
+  - heading "Keep track of every aircraft in your private fleet—including helicopters—with customized monitoring packages tailored to operations of any size." [level=3]
+  - heading "Compare tiers" [level=4]:
+    - link "Compare tiers":
+      - text: Compare tiers
+      - img
+  - heading "Watch the world take flight." [level=2]
+  - heading "Explore dynamic photos of aircraft taken and shared by the FlightAware community." [level=3]
+  - img "Airbus A320 (EC-MQE)"
+  - img "Cessna Caravan (N558EX)"
+  - img "Gulfstream Aerospace Gulfstream G650 (N312AT)"
+  - img "Warbirds"
+  - img "Piper Tomahawk with Dog"
+  - img "Boeing 747-400 (PH-BFG)"
+  - img "Boeing 757-200"
+  - img "Boeing 777-200 (N852FD)"
+  - img "De Havilland Mosquito (N474PZ)"
+  - img "Boeing 787-8 (N787BA)"
+  - img "Canadair CL-415 SuperScooper (N385AC)"
+  - img "TFL3131"
+  - heading "See all photos" [level=4]:
+    - link "See all photos":
+      - text: See all photos
+      - img
+  - heading "Worldwide tracking, in your hands." [level=2]
+  - paragraph: Download the FlightAware app to stay up to date on the go.
+  - img "apps-qr-code"
+  - switch "iOS Android" [checked]
+  - img "ios-center"
+  - heading "Customize your tracking." [level=2]
+  - paragraph: Create your free FlightAware account and unlock real-time tracking, custom alerts, and more.
+  - link "Sign up"
+- contentinfo:
+  - img "FlightAware logo"
+  - navigation:
+    - heading "About" [level=6]
+    - list:
+      - listitem:
+        - link "About FlightAware"
+      - listitem:
+        - link "Newsroom"
+      - listitem:
+        - link "Advertise With Us"
+      - listitem:
+        - link "Careers"
+      - listitem:
+        - link "Webinars"
+      - listitem:
+        - link "Blog"
+      - listitem:
+        - link "Engineering Blog"
+      - listitem:
+        - link "Store"
+  - navigation:
+    - heading "Community" [level=6]
+    - list:
+      - listitem:
+        - link "Squawks"
+      - listitem:
+        - link "Discussion"
+      - listitem:
+        - link "Photos"
+      - listitem:
+        - link "ADS-B Statistics"
+  - navigation:
+    - heading "Tracking" [level=6]
+    - list:
+      - listitem:
+        - link "Flight Finder"
+      - listitem:
+        - link "IFR Route Analyzer"
+  - navigation:
+    - heading "Products" [level=6]
+    - list:
+      - listitem:
+        - link "AeroAPI"
+      - listitem:
+        - link "FlightAware Firehose"
+      - listitem:
+        - link "FlightAware Foresight"
+      - listitem:
+        - link "Rapid Reports"
+      - listitem:
+        - link "Custom Reports"
+      - listitem:
+        - link "Integrated Maps"
+      - listitem:
+        - link "FlightAware Aviator"
+      - listitem:
+        - link "FlightAware Global"
+      - listitem:
+        - link "FlightAware FBO Toolbox"
+      - listitem:
+        - link "FlightAware TV℠"
+      - listitem:
+        - link "GlobalBeacon"
+      - listitem:
+        - link "ADS-B Receivers"
+  - navigation:
+    - heading "Customer Service" [level=6]
+    - list:
+      - listitem:
+        - link "FAQs"
+      - listitem:
+        - link "Contact Us"
+  - link "Get our mobile apps"
+  - navigation:
+    - list:
+      - listitem:
+        - link "Facebook"
+      - listitem:
+        - link "Instagram"
+      - listitem:
+        - link "LinkedIn"
+      - listitem:
+        - link "X"
+  - separator
+  - navigation:
+    - list:
+      - listitem: © 2025 FlightAware
+      - listitem:
+        - text: /
+        - link "Privacy"
+      - listitem:
+        - text: /
+        - link "Terms of Use"
+      - listitem:
+        - text: /
+        - link "Cookie Settings"
+- alert
+- region "Cookie banner":
+  - dialog "Privacy":
+    - text: FlightAware uses cookies to keep our site free, enhance your experience, and to analyze performance and traffic. By clicking “Allow All”, you agree to storing cookies on your device.
+    - link "Legal Information, opens in a new tab": Privacy Statement
+    - button "Cookie Settings"
+    - button "Allow All"
+    - button "Close"
+```
+
+# Test source
+
+```ts
+   1 | const{test, expect} = require('@playwright/test')
+   2 |
+   3 | test('popup and frames' , async({page})=>
+   4 | {
+   5 | await page.goto("https://google.com")
+   6 | await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+   7 | await page.goBack()
+   8 | await page.goForward()
+   9 | expect (await page.locator("#displayed-text").isVisible())
+  10 | await page.locator("#hide-textbox").click()
+  11 | expect (await page.locator("#displayed-text").isHidden())
+  12 | page.on('dialog',dialog => dialog.accept()) // verify any dialog opened and clikc postive reposnse dismiss() for negative response
+  13 | await page.locator("#alertbtn").click()
+  14 | await page.locator("#mousehover").hover()  // mouse hover
+  15 |
+  16 | const framewindow = await page.frameLocator("#courses-iframe") // frame locator used to access the fame window contraol
+  17 | await framewindow.locator("li a[href*='lifetime']:visible").click()
+  18 | console.log((await framewindow.locator(".text h2").textContent()).split(' ')[1])
+  19 |
+  20 | })
+  21 |
+  22 |
+  23 | test('screenshots' , async({page})=>
+  24 |     {
+  25 |     
+  26 |     await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+  27 |     await page.locator("#displayed-text").screenshot({path: 'Partial screenshot.png'}) ////take field level screenshot
+  28 |     await page.locator("#hide-textbox").click()
+  29 |
+  30 |     expect (await page.locator("#displayed-text").isHidden())
+  31 |     await page.screenshot({path : 'Full screenshot.png'})  //take full screenshot
+  32 |
+  33 |
+  34 |     })
+  35 |
+  36 |     
+  37 | test('Visual Comparison Fail' , async({page})=>
+  38 |     {
+  39 |     
+  40 |     await page.goto("https://www.flightaware.com/")
+> 41 |     expect (await page.screenshot()).toMatchSnapshot('Firstscreenhsot.png') // first time will fail to take actual screenshot
+     |                                      ^ Error: expect(Buffer).toMatchSnapshot(expected)
+  42 |
+  43 |
+  44 |     })
+  45 |
+  46 |     test('Visual Comparison Pass' , async({page})=>
+  47 |         {
+  48 |         
+  49 |         await page.goto("https://www.google.com/")
+  50 |         expect (await page.screenshot()).toMatchSnapshot('Googlescreenhsot.png')
+  51 |     
+  52 |     
+  53 |         })
+```

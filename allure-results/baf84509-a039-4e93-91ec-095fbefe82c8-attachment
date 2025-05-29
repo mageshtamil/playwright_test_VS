@@ -1,0 +1,120 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Visual Comparison Pass
+- Location: C:\Playwright\tests\Popupsand visual comparison.spec.js:46:5
+
+# Error details
+
+```
+Error: expect(Buffer).toMatchSnapshot(expected)
+
+  4878 pixels (ratio 0.01 of all image pixels) are different.
+
+Expected: C:\Playwright\tests\Popupsand visual comparison.spec.js-snapshots\Googlescreenhsot-win32.png
+Received: C:\Playwright\test-results\Popupsand visual comparison-Visual-Comparison-Pass\Googlescreenhsot-actual.png
+    Diff: C:\Playwright\test-results\Popupsand visual comparison-Visual-Comparison-Pass\Googlescreenhsot-diff.png
+
+    at C:\Playwright\tests\Popupsand visual comparison.spec.js:50:42
+```
+
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "About"
+  - link "Store"
+  - link "Gmail"
+  - link "Search for Images": Images
+  - button "Google apps":
+    - img
+  - link "Sign in"
+- img
+- search:
+  - img
+  - combobox "Search"
+  - button "Search by voice":
+    - img
+  - button "Search by image":
+    - img
+  - button "Google Search"
+  - button "I'm Feeling Lucky"
+- text: "Google offered in:"
+- link "Français"
+- contentinfo:
+  - text: Canada
+  - link "Advertising"
+  - link "Business"
+  - link "How Search works"
+  - link "Privacy"
+  - link "Terms"
+  - button "Settings"
+- dialog "Sign in to Google":
+  - text: Sign in to Google Get the most from your Google account
+  - button "Stay signed out"
+  - button "Sign in"
+```
+
+# Test source
+
+```ts
+   1 | const{test, expect} = require('@playwright/test')
+   2 |
+   3 | test('popup and frames' , async({page})=>
+   4 | {
+   5 | await page.goto("https://google.com")
+   6 | await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+   7 | await page.goBack()
+   8 | await page.goForward()
+   9 | expect (await page.locator("#displayed-text").isVisible())
+  10 | await page.locator("#hide-textbox").click()
+  11 | expect (await page.locator("#displayed-text").isHidden())
+  12 | page.on('dialog',dialog => dialog.accept()) // verify any dialog opened and clikc postive reposnse dismiss() for negative response
+  13 | await page.locator("#alertbtn").click()
+  14 | await page.locator("#mousehover").hover()  // mouse hover
+  15 |
+  16 | const framewindow = await page.frameLocator("#courses-iframe") // frame locator used to access the fame window contraol
+  17 | await framewindow.locator("li a[href*='lifetime']:visible").click()
+  18 | console.log((await framewindow.locator(".text h2").textContent()).split(' ')[1])
+  19 |
+  20 | })
+  21 |
+  22 |
+  23 | test('screenshots' , async({page})=>
+  24 |     {
+  25 |     
+  26 |     await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+  27 |     await page.locator("#displayed-text").screenshot({path: 'Partial screenshot.png'}) ////take field level screenshot
+  28 |     await page.locator("#hide-textbox").click()
+  29 |
+  30 |     expect (await page.locator("#displayed-text").isHidden())
+  31 |     await page.screenshot({path : 'Full screenshot.png'})  //take full screenshot
+  32 |
+  33 |
+  34 |     })
+  35 |
+  36 |     
+  37 | test('Visual Comparison Fail' , async({page})=>
+  38 |     {
+  39 |     
+  40 |     await page.goto("https://www.flightaware.com/")
+  41 |     expect (await page.screenshot()).toMatchSnapshot('Firstscreenhsot.png') // first time will fail to take actual screenshot
+  42 |
+  43 |
+  44 |     })
+  45 |
+  46 |     test('Visual Comparison Pass' , async({page})=>
+  47 |         {
+  48 |         
+  49 |         await page.goto("https://www.google.com/")
+> 50 |         expect (await page.screenshot()).toMatchSnapshot('Googlescreenhsot.png')
+     |                                          ^ Error: expect(Buffer).toMatchSnapshot(expected)
+  51 |     
+  52 |     
+  53 |         })
+```

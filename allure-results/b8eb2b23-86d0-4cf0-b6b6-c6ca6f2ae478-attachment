@@ -1,0 +1,117 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: @Web my first test case
+- Location: C:\Playwright\tests\UIcomponents.spec.js:10:1
+
+# Error details
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('[name=terms]')
+    - locator resolved to <input id="terms" name="terms" type="checkbox"/>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    7 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+    - retrying click action
+      - waiting 500ms
+
+    at C:\Playwright\tests\UIcomponents.spec.js:26:40
+```
+
+# Test source
+
+```ts
+   1 | const{test,expect} = require('@playwright/test')
+   2 |
+   3 |
+   4 | import { waitForDebugger } from 'inspector';
+   5 | //import { test, expect } from '@playwright/test';
+   6 | import { only } from 'node:test';
+   7 |
+   8 |     
+   9 | // if its blank context for newContext(), newPage() we dont require to write the code
+  10 | test("@Web my first test case", async({page})=>
+  11 |     {
+  12 |       await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+  13 |     const userName= page.locator("#username");
+  14 |     const signIn =page.locator("#signInBtn");  
+  15 |     const documentlink = page.locator("[href*= documents-request]")
+  16 |
+  17 |     await userName.fill("rahulshettyacademy");
+  18 |     await page.locator("[type=password]").fill("learning"); // css => attribute =value
+  19 |    const dropdwn= page.locator("select.form-control")
+  20 |    const optin =  page.locator(".radiotextsty").nth(1)
+  21 |    dropdwn.selectOption("consult")
+  22 |    await page.locator(".radiotextsty").nth(1).click();
+  23 |    await page.locator("#okayBtn").click();
+  24 |    await expect(optin).toBeChecked()
+  25 |    console.log(await (optin).isChecked())
+> 26 |     await page.locator("[name=terms]").click();
+     |                                        ^ Error: locator.click: Target page, context or browser has been closed
+  27 |     await page.locator("[name=terms]").uncheck();
+  28 |     expect (await page.locator("[name=terms]").isChecked()).toBeFalsy() // assertion 
+  29 |     await expect(documentlink).toHaveAttribute('class', 'blinkingText');
+  30 |     //await signIn.click();
+  31 |      
+  32 |
+  33 |   await page.pause();
+  34 | });
+  35 |
+  36 |
+  37 | test('@Web my second case', async({browser})=>
+  38 |   
+  39 | {
+  40 |   const context = await browser.newContext();
+  41 |   const page = await context.newPage();  // Context for frist page
+  42 |   await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+  43 |   const documentlink = page.locator("[href*= documents-request]")
+  44 |   await expect(documentlink).toHaveAttribute('class', 'blinkingText');
+  45 |
+  46 |   const [newpage] =await Promise.all(   // Promise all helps to run reg scripts parrallely in asynchronius mode
+  47 | [
+  48 |     context.waitForEvent('page'),   // Context for second page
+  49 |     documentlink.click(),
+  50 | ])
+  51 |
+  52 | const text =await newpage.locator(".red").textContent()
+  53 | await console.log(text)
+  54 | const splittext =text.split('@')
+  55 | await console.log(splittext)
+  56 | const domain =splittext[1].split(" ")[0]
+  57 | await console.log(domain)
+  58 | await page.locator("#username").fill(domain)
+  59 | console.log("hai")
+  60 | console.log(await page.locator("#username").textContent())
+  61 | await page.pause()
+  62 |
+  63 |
+  64 |
+  65 |
+  66 |
+  67 | })
+  68 |
+```
