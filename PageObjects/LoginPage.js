@@ -1,5 +1,5 @@
 class LoginPage {
-    
+    //Sample
     constructor(page)
     {
         this.page =page
