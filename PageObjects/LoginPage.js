@@ -10,7 +10,12 @@ class LoginPage {
      
     async validLogin(username,password)
     {
+<<<<<<< HEAD
         //sample 1235
+=======
+        //sample 12356785
+   //sample 12356785
+>>>>>>> 61afd22 (VS2 commit)
         await this.username.fill(username)
         await this.password.fill(password)
         await this.signInbutton.click()
