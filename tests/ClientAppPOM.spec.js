@@ -39,7 +39,7 @@ test(`Login for the product ${data.productname}`, async({page})=>
    console.log(ordernumber)
    const OrderVerification =pomanager.getOrderVerificationPage()
    OrderVerification.VerifyOrder(ordernumber)
-  await page.pause()
+  //await page.pause()
 
 
 
