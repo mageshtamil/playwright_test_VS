@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 class OrderSummaryPage{
-
+//Ordersummary Page
   constructor(page)
     {
     this.page=page
