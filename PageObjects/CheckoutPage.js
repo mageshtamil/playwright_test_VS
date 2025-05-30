@@ -3,6 +3,7 @@ class CheckoutPage
 {
     //checkout Page
      //checkout Page
+ //checkout Page
 constructor(page)
 {
     this.page =page
