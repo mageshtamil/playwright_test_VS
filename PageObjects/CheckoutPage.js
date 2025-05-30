@@ -2,6 +2,7 @@ const{test,expect} = require('@playwright/test')
 class CheckoutPage
 {
     //checkout Page
+     //checkout Page
 constructor(page)
 {
     this.page =page

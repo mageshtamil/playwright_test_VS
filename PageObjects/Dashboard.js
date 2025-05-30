@@ -1,5 +1,6 @@
 class Dashboard{
     //Dashboard  Page
+    //Dashboard  Page
 constructor (page)
 {
     this.page =page
